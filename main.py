@@ -25,7 +25,7 @@ BANNED_WORDS = [
     "fuck", "shit", "bitch", "nigger", "faggot", "whore", "slut", 
     "rape", "nigga", "dick", "cock", "bastred", "head", "ass", "hole", 
     "fag", "cunt", "pedo", "nga", "black monkey", "kink", 
-    "feditsh", "pussy", "shut up"
+    "feditsh", "pussy", "shut up","negro",
 ]
 
 # Global strike storage
@@ -118,15 +118,15 @@ async def on_message(message):
             await message.delete()
             
             if current == 4:
-                await message.author.timeout(datetime.timedelta(seconds=15), reason="4th strike")
+                await message.author.timeout(datetime.timedelta(seconds=5), reason="4th strike")
                 await message.channel.send(f"🔇 {message.author.mention} timed out (Strike 4).")
             elif current == 5:
-                await message.author.timeout(datetime.timedelta(seconds=20), reason="5th strike")
+                await message.author.timeout(datetime.timedelta(seconds=5), reason="5th strike")
                 await message.channel.send(f"🔇 {message.author.mention} timed out (Strike 5).")
             elif current >= 6:
                 await message.channel.send(f"🚨 **FINAL WARNING** {message.author.mention}: Next time is a BAN.")
             else:
-                await message.channel.send(f"⚠️ {message.author.mention}, no bad words! it makes me feel hot~ ngh~! Strikes: {current}", delete_after=10)
+                await message.channel.send(f"⚠️ {message.author.mention}, no bad words! it makes me feel hot~ ngh~! Strikes: {current}", delete_after=5)
         
         except discord.Forbidden:
             print("Permission error: Check Yomi's role position.")
@@ -150,8 +150,8 @@ async def on_message(message):
             
             # Dramatic Anime-style responses
             responses = [
-                f"H-hey! {message.author.mention}, you can't say that here! Baka! (Strike {current})",
-                f"🚫 Stop right there, {message.author.mention}! My ears are sensitive to those words! (Strike {current})",
+                f"H-hey! {message.author.mention}, 💗uwu~ you can't say that here! Baka! (Strike {current})",
+                f"🚫 Stop right there, {message.author.mention}! 🐺My ears are sensitive to those words! (Strike {current})",
                 f"💢 Oh my gosh... {message.author.mention}, that's so rude! I'm giving you a strike for that. ({current}/3)",
                 f"🥺 Why would you say something so mean, {message.author.mention}?? I'm deleting that!"
             ]
