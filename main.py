@@ -139,7 +139,7 @@ async def on_message(message):
 
     msg_content = message.content.lower()
     
-    # Banned Word Detection
+    
     if any(word in msg_content for word in BANNED_WORDS):
         user_id = message.author.id
         user_strikes[user_id] = user_strikes.get(user_id, 0) + 1
@@ -147,7 +147,18 @@ async def on_message(message):
 
         try:
             await message.delete()
-            
+            # ... (your responses here) ...
+            await message.channel.send(random.choice(responses), delete_after=5)
+        except discord.Forbidden:
+            print("Permission error")
+        
+        return  # This MUST be here to stop the bot from processing further
+        
+        
+        
+
+        
+        
             # Dramatic Anime-style responses
             responses = [
                 f"H-hey! {message.author.mention}, 💗uwu~ you can't say that here! Baka! (Strike {current})",
