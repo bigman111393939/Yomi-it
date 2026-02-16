@@ -25,7 +25,7 @@ BANNED_WORDS = [
     "fuck", "shit", "bitch", "nigger", "faggot", "whore", "slut", 
     "rape", "nigga", "dick", "cock", "bastred", "head", "ass", "hole", 
     "fag", "cunt", "pedo", "nga", "black monkey", "kink", 
-    "feditsh", "pussy", "shut up","negro","hoe", "porn","chink", "blacky",
+    "feditsh", "pussy", "shut up", "negro", "hoe", "porn", "chink", "blacky"
 ]
 
 # Global strike storage
@@ -99,7 +99,7 @@ async def fortune(interaction: discord.Interaction):
 async def hug(interaction: discord.Interaction, member: discord.Member):
     await interaction.response.send_message(f"🫂 {interaction.user.mention} gives {member.mention} a warm hug!")
 
-# --- AUTOMOD & MESSAGE LOGIC ---
+# --- AUTOMOD SECTION ---
 
 @bot.event
 async def on_message(message):
@@ -108,7 +108,6 @@ async def on_message(message):
 
     msg_content = message.content.lower()
     
-    # Banned Word Detection
     if any(word in msg_content for word in BANNED_WORDS):
         user_id = message.author.id
         user_strikes[user_id] = user_strikes.get(user_id, 0) + 1
@@ -117,69 +116,24 @@ async def on_message(message):
         try:
             await message.delete()
             
-            if current == 4:
-                await message.author.timeout(datetime.timedelta(seconds=5), reason="4th strike")
-                await message.channel.send(f"🔇 {message.author.mention} timed out (Strike 4).")
-            elif current == 5:
-                await message.author.timeout(datetime.timedelta(seconds=5), reason="5th strike")
-                await message.channel.send(f"🔇 {message.author.mention} timed out (Strike 5).")
-            elif current >= 6:
-                await message.channel.send(f"🚨 **FINAL WARNING** {message.author.mention}: Next time is a BAN.")
-            else:
-                await message.channel.send(f"⚠️ {message.author.mention}, no bad words! it makes me feel hot~ ngh~! Strikes: {current}", delete_after=5)
-        
-        except discord.Forbidden:
-            print("Permission error: Check Yomi's role position.")
-
-    await bot.process_commands(message)
-@bot.event
-async def on_message(message):
-    if message.author == bot.user:
-        return
-
-    msg_content = message.content.lower()
-    
-    
-    if any(word in msg_content for word in BANNED_WORDS):
-        user_id = message.author.id
-        user_strikes[user_id] = user_strikes.get(user_id, 0) + 1
-        current = user_strikes[user_id]
-
-        try:
-            await message.delete()
-            # ... (your responses here) ...
-            await message.channel.send(random.choice(responses), delete_after=5)
-        except discord.Forbidden:
-            print("Permission error")
-        
-        return  # This MUST be here to stop the bot from processing further)
-     
-        
-        
-        
-
-        
-        
-            # Dramatic Anime-style responses
-            
+            responses = [
                 f"H-hey! {message.author.mention}, 💗uwu~ you can't say that here! Baka! (Strike {current})",
-                f"🚫 Stop right there, {message.author.mention}! 🐺My ears are sensitive to those words! (Strike {current})",
-                f"💢 Oh my gosh... {message.author.mention}, that's so rude! I'm giving you a strike for that. ({current}/3)",
-                f"🥺 Why would you say something so mean, {message.author.mention}?? I'm deleting that!"
+                f"🚫 Stop right there, {message.author.mention}! 🐺 My ears are sensitive! (Strike {current})",
+                f"💢 Oh my gosh... {message.author.mention}, that's so rude! (Strike {current})",
+                f"🥺 Why would you say that, {message.author.mention}?? I'm deleting it!"
             ]
             
             if current >= 6:
-                await message.channel.send(f"🚨 **FINAL WARNING** {message.author.mention}: I'm losing my patience... one more and you're out!")
-        
-               else:
+                await message.channel.send(f"🚨 **FINAL WARNING** {message.author.mention}: Next time is a BAN.")
+            else:
                 await message.channel.send(random.choice(responses), delete_after=5)
-        except discord.Forbidden:
                 
-                                           
-        
-        
+        except discord.Forbidden:
             print("Permission error: Check Yomi's role position.")
+        
+        return 
 
     await bot.process_commands(message)
-# Run the bot
+
+# --- START BOT ---
 bot.run(os.environ.get('TOKEN'))
