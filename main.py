@@ -276,7 +276,7 @@ async def check_strikes(interaction: discord.Interaction, member: discord.Member
             )
             return
 
-        await bot.process_commands(message
+        await bot.process_commands(message)
     await bot.process_commands(message)
 if any(word in message.content.lower() for word in RESTRICTED_WORDS):
         await message.delete()
