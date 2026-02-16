@@ -25,7 +25,7 @@ BANNED_WORDS = [
     "fuck", "shit", "bitch", "nigger", "faggot", "whore", "slut", 
     "rape", "nigga", "dick", "cock", "bastred", "head", "ass", "hole", 
     "fag", "cunt", "pedo", "nga", "black monkey", "kink", 
-    "feditsh", "pussy", "shut up","negro",
+    "feditsh", "pussy", "shut up","negro","hoe", "porn","chink", "blacky",
 ]
 
 # Global strike storage
@@ -159,7 +159,8 @@ async def on_message(message):
             if current >= 6:
                 await message.channel.send(f"🚨 **FINAL WARNING** {message.author.mention}: I'm losing my patience... one more and you're out!")
             else:
-                await message.channel.send(random.choice(responses), delete_after=5
+                await message.channel.send(random.choice(responses), delete_after=5)
+                
                                            
         
         except discord.Forbidden:
