@@ -161,7 +161,7 @@ async def on_message(message):
         
         
             # Dramatic Anime-style responses
-            responses = [
+            
                 f"H-hey! {message.author.mention}, 💗uwu~ you can't say that here! Baka! (Strike {current})",
                 f"🚫 Stop right there, {message.author.mention}! 🐺My ears are sensitive to those words! (Strike {current})",
                 f"💢 Oh my gosh... {message.author.mention}, that's so rude! I'm giving you a strike for that. ({current}/3)",
