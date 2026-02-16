@@ -152,7 +152,8 @@ async def on_message(message):
         except discord.Forbidden:
             print("Permission error")
         
-        return  # This MUST be here to stop the bot from processing further
+        return  # This MUST be here to stop the bot from processing further)
+     
         
         
         
@@ -181,5 +182,4 @@ async def on_message(message):
 
     await bot.process_commands(message)
 # Run the bot
-bot.run(os.environ.get('TOKEN'))
-     
+bot.run(os.environ.get('TOKEN')
