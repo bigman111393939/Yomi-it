@@ -159,7 +159,8 @@ async def on_message(message):
             if current >= 6:
                 await message.channel.send(f"🚨 **FINAL WARNING** {message.author.mention}: I'm losing my patience... one more and you're out!")
             else:
-                await message.channel.send(random.choice(responses), delete_after=10)
+                await message.channel.send(random.choice(responses), delete_after=5
+                                           
         
         except discord.Forbidden:
             print("Permission error: Check Yomi's role position.")
