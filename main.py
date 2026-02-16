@@ -278,6 +278,8 @@ async def check_strikes(interaction: discord.Interaction, member: discord.Member
 
         await bot.process_commands(message
     await bot.process_commands(message)
-
+if any(word in message.content.lower() for word in RESTRICTED_WORDS):
+        await message.delete()
+        await message.channel.send(f"{message.author.mention}, no bad words plewse  it makes me feel hot~ ngh~!", delete_after=5)
 # Railway will use the TOKEN variable you set in their dashboard
 bot.run(os.environ.get('TOKEN'))
